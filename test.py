@@ -4,7 +4,7 @@ def inc(x):
 
 
 def test_answer():
-    assert inc(3) == 5
+    assert inc(3) == 3
 
 def test_other():
     assert inc(3) == 4
