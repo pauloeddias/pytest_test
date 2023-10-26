@@ -76,7 +76,7 @@ jobs:
 
     - name: sam deploy
       working-directory: ./lambda_functions/${{ inputs.name }}
-      run: sam deploy --Environment ${{ inputs.choice }} --config-file ${{ inputs.choice }}.toml --template-file ${{ inputs.choice }}.yaml
+      run: sam deploy --config-file ${{ inputs.choice }}.toml --template-file ${{ inputs.choice }}.yaml
 
     
   
