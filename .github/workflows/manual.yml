@@ -39,6 +39,6 @@ jobs:
     steps:
     # Runs a single command using the runners shell
     - name: cd to correct folder
-      run: cd lambda_functions/${{ inputs.name }}"
+      run: cd lambda_functions/${{ inputs.name }}
     - name: run the script
-      run: deploy.sh ${{ inputs.name }}"
+      run: deploy.sh ${{ inputs.name }}
