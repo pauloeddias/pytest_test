@@ -50,14 +50,14 @@ jobs:
       uses: actions/checkout@v3
 
     - uses: aws-actions/setup-sam@v2
-        with:
-          use-installer: true
+      with:
+        use-installer: true
 
     - uses: aws-actions/configure-aws-credentials@v2
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
 
     - name: sam build
       working-directory: ./lambda_functions/${{ inputs.name }}
