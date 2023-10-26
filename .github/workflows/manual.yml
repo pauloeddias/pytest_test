@@ -31,7 +31,7 @@ jobs:
     - name: Send greeting
       run: echo "Hello ${{ inputs.name }}"
 
-  movestuff:
+  whereamI:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -39,6 +39,16 @@ jobs:
     steps:
     # Runs a single command using the runners shell
     - name: cd to correct folder
-      run: cd lambda_functions/${{ inputs.name }}
-    - name: run the script
-      run: deploy.sh ${{ inputs.name }}
+      run: ls
+  
+  # movestuff:
+  #   # The type of runner that the job will run on
+  #   runs-on: ubuntu-latest
+
+  #   # Steps represent a sequence of tasks that will be executed as part of the job
+  #   steps:
+  #   # Runs a single command using the runners shell
+  #   - name: cd to correct folder
+  #     run: cd lambda_functions/${{ inputs.name }}
+  #   - name: run the script
+  #     run: deploy.sh ${{ inputs.name }}
