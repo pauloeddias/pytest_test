@@ -12,7 +12,7 @@ on:
         # Friendly description to be shown in the UI instead of 'name'
         description: 'Person to greet'
         # Default value if no value is explicitly provided
-        default: 'World'
+        default: 'surelogix'
         # Input has to be provided for the workflow to run
         required: true
         # The data type of the input
@@ -35,7 +35,7 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     env:
-      working-directory: lambda_functions/${{ inputs.name }}
+      working-directory: ./lambda_functions/${{ inputs.name }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
