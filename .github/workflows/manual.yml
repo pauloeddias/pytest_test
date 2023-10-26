@@ -38,10 +38,11 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Runs a single command using the runners shell
-    - uses: actions/checkout@v2
-      name: run the script
-      working-directory: lambda_functions/${{ inputs.name }}
-      run: deploy.sh ${{ inputs.name }}
+    - name: checkout repo
+      uses: actions/checkout@v2
+    - name: run the script
+      working-directory: ./lambda_functions/${{ inputs.name }}
+      run: ls
   
   # movestuff:
   #   # The type of runner that the job will run on
