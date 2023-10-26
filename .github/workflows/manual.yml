@@ -84,6 +84,7 @@ jobs:
       run: mv * app
 
     - name: show dir
+      if: always()
       working-directory: ./lambda_functions/${{ inputs.name }}/.aws-sam/build/${{ inputs.name }}
       run: ls
   
