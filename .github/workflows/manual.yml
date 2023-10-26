@@ -87,4 +87,8 @@ jobs:
       if: always()
       working-directory: ./lambda_functions/${{ inputs.name }}/.aws-sam/build/${{ inputs.name }}
       run: ls
+
+    - name: show dir again
+      working-directory: ./lambda_functions/${{ inputs.name }}/.aws-sam/build/${{ inputs.name }}
+      run: ls
   
