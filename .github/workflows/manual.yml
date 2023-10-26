@@ -58,13 +58,13 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1
 
-      - name: replace env name in config
-      working-directory: ./lambda_functions/${{ inputs.name }}
-      run: sed -i 's/{{MYENV}}/${{ inputs.choice }}/g' samconfig.toml
+    - name: replace env name in config
+    working-directory: ./lambda_functions/${{ inputs.name }}
+    run: sed -i 's/{{MYENV}}/${{ inputs.choice }}/g' samconfig.toml
 
-      - name: replace env name in template
-      working-directory: ./lambda_functions/${{ inputs.name }}
-      run: sed -i 's/{{MYENV}}/${{ inputs.choice }}/g' template.yaml
+    - name: replace env name in template
+    working-directory: ./lambda_functions/${{ inputs.name }}
+    run: sed -i 's/{{MYENV}}/${{ inputs.choice }}/g' template.yaml
 
     
 
