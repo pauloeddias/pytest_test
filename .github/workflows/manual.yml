@@ -74,4 +74,16 @@ jobs:
     - name: show dir
       working-directory: ./lambda_functions/${{ inputs.name }}/.aws-sam
       run: ls
+
+    - name: create app dir
+      working-directory: ./lambda_functions/${{ inputs.name }}/.aws-sam/build/${{ inputs.name }}
+      run: mkdir app
+
+    - name: move to app dir
+      working-directory: ./lambda_functions/${{ inputs.name }}/.aws-sam/build/${{ inputs.name }}
+      run: mv * app
+
+    - name: show dir
+      working-directory: ./lambda_functions/${{ inputs.name }}/.aws-sam/build/${{ inputs.name }}
+      run: ls
   
