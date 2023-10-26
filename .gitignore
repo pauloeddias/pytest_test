@@ -1,1 +1,14 @@
-.idea
+*.env
+*__pycache__*
+*.zip
+*test_docs/
+.idea/*
+tests/config.py
+.vscode/
+*surelogix/files
+*.pdf
+*.pdf.json
+/bla.py
+test.ipynb
+/bla.ipynb
+*.aws-sam*
