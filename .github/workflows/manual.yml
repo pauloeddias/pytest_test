@@ -89,7 +89,7 @@ jobs:
 
     - name: sam deploy
       working-directory: ./lambda_functions/${{ inputs.name }}
-      run: sam deploy ${{input.choice}}
+      run: sam deploy ${{ inputs.choice }}
 
     
   
