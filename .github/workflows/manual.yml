@@ -72,6 +72,6 @@ jobs:
       run: sam build
 
     - name: show dir
-      working-directory: ./lambda_functions/${{ inputs.name }}
+      working-directory: ./lambda_functions/${{ inputs.name }}/.aws-sam
       run: ls
   
