@@ -9,7 +9,7 @@ Parameters:
         - PROD
       Default: DEV
 Resources:
-  surelogixDEV:
+  surelogix{{MYENV}}:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: .
@@ -30,7 +30,7 @@ Resources:
           AZURE_ENDPOINT: !Sub '{{resolve:secretsmanager:DML_env_variables:SecretString:AZURE_ENDPOINT}}'
           AZURE_KEY: !Sub '{{resolve:secretsmanager:DML_env_variables:SecretString:AZURE_KEY}}'
           OPENAI_API_KEY: !Sub '{{resolve:secretsmanager:DML_env_variables:SecretString:OPENAI_API_KEY}}'
-          ENVIRONMENT: !Sub 'DEV'
+          ENVIRONMENT: !Sub '{{MYENV}}'
       Layers:
         - >-
           arn:aws:lambda:us-east-1:061008833801:layer:PortXDependencies_Python_Layer:4
@@ -39,5 +39,5 @@ Resources:
       SnapStart:
         ApplyOn: None
       PackageType: Zip
-      FunctionName: !Sub 'SamTest4_DEV_surelogix'
-      VersionDescription: DEV deploy
+      FunctionName: !Sub 'SamTest6_{{MYENV}}_surelogix'
+      VersionDescription: {{MYENV}} deploy

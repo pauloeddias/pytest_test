@@ -4,7 +4,7 @@ version = 0.1
 
 [default]
 [default.global.parameters]
-stack_name = "surelogixSamtest4"
+stack_name = "surelogixSamtest7{{MYENV}}"
 
 [default.build.parameters]
 cached = true
@@ -17,9 +17,8 @@ lint = true
 capabilities = "CAPABILITY_IAM"
 confirm_changeset = false
 resolve_s3 = true
-s3_prefix = "surelogixSamtest4"
+s3_prefix = "surelogixSamtest7{{MYENV}}"
 region = "us-east-1"
-template_file = "DEV.yaml"
 image_repositories = []
 
 [default.package.parameters]

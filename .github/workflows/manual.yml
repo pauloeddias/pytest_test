@@ -58,9 +58,23 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1
 
+      - name: replace env name in config
+      working-directory: ./lambda_functions/${{ inputs.name }}
+      run: sed -i 's/{{MYENV}}/${{ inputs.choice }}/g' samconfig.toml
+
+      - name: replace env name in template
+      working-directory: ./lambda_functions/${{ inputs.name }}
+      run: sed -i 's/{{MYENV}}/${{ inputs.choice }}/g' template.yaml
+
+    
+
+    # - name: sam build 
+    #   working-directory: ./lambda_functions/${{ inputs.name }}
+    #   run: sam build --config-file ${{ inputs.choice }}.toml --template-file ${{ inputs.choice }}.yaml
+
     - name: sam build 
       working-directory: ./lambda_functions/${{ inputs.name }}
-      run: sam build --config-file ${{ inputs.choice }}.toml --template-file ${{ inputs.choice }}.yaml
+      run: sam build
 
     - name: create app dir
       working-directory: ./lambda_functions/${{ inputs.name }}/.aws-sam/build
@@ -74,9 +88,13 @@ jobs:
       working-directory: ./lambda_functions/${{ inputs.name }}/.aws-sam/build
       run: mv app ${{ inputs.name }}${{ inputs.choice }}
 
+    # - name: sam deploy
+    #   working-directory: ./lambda_functions/${{ inputs.name }}
+    #   run: sam deploy --config-file ${{ inputs.choice }}.toml --template-file ${{ inputs.choice }}.yaml
+
     - name: sam deploy
       working-directory: ./lambda_functions/${{ inputs.name }}
-      run: sam deploy --config-file ${{ inputs.choice }}.toml --template-file ${{ inputs.choice }}.yaml
+      run: sam deploy
 
     
   
