@@ -39,8 +39,8 @@ jobs:
     steps:
     # Runs a single command using the runners shell
     - name: run the script
-      working-directory: ./lambda_functions/${{ inputs.name }}
-      run: bash deploy.sh ${{ inputs.name }}
+      working-directory: lambda_functions/${{ inputs.name }}
+      run: deploy.sh ${{ inputs.name }}
   
   # movestuff:
   #   # The type of runner that the job will run on
