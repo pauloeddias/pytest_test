@@ -10,7 +10,7 @@ on:
     inputs:
       name:
         # Friendly description to be shown in the UI instead of 'name'
-        description: 'client to deploy'
+        description: 'client to deploy **exactly as it appears in the repo****case sensitive**'
         # Default value if no value is explicitly provided
         #default: 'surelogix'
         # Input has to be provided for the workflow to run
@@ -19,6 +19,7 @@ on:
         type: string
       choice:
         type: choice
+        required: true
         description: Environment
         options:
         - 'DEV'
