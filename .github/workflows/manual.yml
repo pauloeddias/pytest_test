@@ -80,11 +80,11 @@ jobs:
 
     - name: move to dir to app
       working-directory: ./lambda_functions/${{ inputs.name }}/.aws-sam/build
-      run: mv ${{ inputs.name }}/* app
+      run: mv ${{ inputs.name }}${{ inputs.choice }}/* app
 
     - name: move app to dir
       working-directory: ./lambda_functions/${{ inputs.name }}/.aws-sam/build
-      run: mv app ${{ inputs.name }}
+      run: mv app ${{ inputs.name }}${{ inputs.choice }}
 
     - name: sam deploy
       working-directory: ./lambda_functions/${{ inputs.name }}
