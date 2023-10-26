@@ -17,6 +17,14 @@ on:
         required: true
         # The data type of the input
         type: string
+      choice:
+        type: choice
+        description: Environment
+        options:
+        - 'DEV'
+        - 'PROD'
+        default: 'DEV'
+      
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -29,29 +37,18 @@ jobs:
     steps:
     # Runs a single command using the runners shell
     - name: Send greeting
-      run: echo "Hello ${{ inputs.name }}"
+      run: echo "Hello ${{ inputs.name }} ${{inputs.choice}}!}}"
 
-  whereamI:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-    
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-    # Runs a single command using the runners shell
-    - name: checkout repo
-      uses: actions/checkout@v2
-    - name: run the script
-      working-directory: ./lambda_functions/${{ inputs.name }}
-      run: ./deploy.sh ${{ inputs.name }}
-  
-  # movestuff:
+  # whereamI:
   #   # The type of runner that the job will run on
   #   runs-on: ubuntu-latest
-
+    
   #   # Steps represent a sequence of tasks that will be executed as part of the job
   #   steps:
   #   # Runs a single command using the runners shell
-  #   - name: cd to correct folder
-  #     run: cd lambda_functions/${{ inputs.name }}
+  #   - name: checkout repo
+  #     uses: actions/checkout@v2
   #   - name: run the script
-  #     run: deploy.sh ${{ inputs.name }}
+  #     working-directory: ./lambda_functions/${{ inputs.name }}
+  #     run: ./deploy.sh ${{ inputs.name }}
+  
