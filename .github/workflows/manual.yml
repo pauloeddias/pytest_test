@@ -62,6 +62,18 @@ jobs:
       working-directory: ./lambda_functions/${{ inputs.name }}
       run: sam build --config-file ${{ inputs.choice }}.toml --template-file ${{ inputs.choice }}.yaml
 
+    - name: ls
+      working-directory: ./lambda_functions/${{ inputs.name }}
+      run: ls
+
+    - name: ls
+      working-directory: ./lambda_functions/${{ inputs.name }}/.aws-sam
+      run: ls
+
+    - name: ls
+      working-directory: ./lambda_functions/${{ inputs.name }}/.aws-sam/build
+      run: ls
+
     - name: create app dir
       working-directory: ./lambda_functions/${{ inputs.name }}/.aws-sam/build
       run: mkdir app
