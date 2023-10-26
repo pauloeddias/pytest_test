@@ -9,7 +9,7 @@ Parameters:
         - PROD
       Default: DEV
 Resources:
-  surelogix:
+  surelogixPROD:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: .
