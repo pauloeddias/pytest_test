@@ -58,9 +58,9 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1
 
-    - name: sam build
+    - name: sam build 
       working-directory: ./lambda_functions/${{ inputs.name }}
-      run: sam build
+      run: sam build --config-file ${{ inputs.choice }}.toml
 
     - name: create app dir
       working-directory: ./lambda_functions/${{ inputs.name }}/.aws-sam/build

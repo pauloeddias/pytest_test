@@ -19,6 +19,7 @@ confirm_changeset = false
 resolve_s3 = true
 s3_prefix = "surelogixSamtest4"
 region = "us-east-1"
+template_file = "DEV.yaml"
 image_repositories = []
 
 [default.package.parameters]
