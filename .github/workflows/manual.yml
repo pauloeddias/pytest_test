@@ -34,13 +34,12 @@ jobs:
   whereamI:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    env:
-      working-directory: ./lambda_functions/${{ inputs.name }}
-
+    
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Runs a single command using the runners shell
     - name: run the script
+      working-directory: ./lambda_functions/${{ inputs.name }}
       run: bash deploy.sh ${{ inputs.name }}
   
   # movestuff:
