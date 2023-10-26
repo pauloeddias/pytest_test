@@ -39,4 +39,5 @@ Resources:
       SnapStart:
         ApplyOn: None
       PackageType: Zip
-      FunctionName: !Sub 'SamTest4_${Environment}_surelogix'
+      FunctionName: !Sub 'SamTest6_${Environment}_surelogix'
+      VersionDescription: ${Environment} deploy

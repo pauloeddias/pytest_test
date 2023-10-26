@@ -40,3 +40,4 @@ Resources:
         ApplyOn: None
       PackageType: Zip
       FunctionName: !Sub 'SamTest4_${Environment}_surelogix'
+      VersionDescription: ${Environment} deploy
