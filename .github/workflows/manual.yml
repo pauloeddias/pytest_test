@@ -60,7 +60,7 @@ jobs:
 
     - name: sam build 
       working-directory: ./lambda_functions/${{ inputs.name }}
-      run: sam build --config-file ${{ inputs.choice }}.toml
+      run: sam build --config-file ${{ inputs.choice }}.toml --template-file ${{ inputs.choice }}.yaml
 
     - name: create app dir
       working-directory: ./lambda_functions/${{ inputs.name }}/.aws-sam/build
@@ -76,7 +76,7 @@ jobs:
 
     - name: sam deploy
       working-directory: ./lambda_functions/${{ inputs.name }}
-      run: sam deploy ${{ inputs.choice }}
+      run: sam deploy --config-file ${{ inputs.choice }}.toml ${{ inputs.choice }}
 
     
   
