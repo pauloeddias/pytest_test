@@ -10,7 +10,7 @@ on:
     inputs:
       name:
         # Friendly description to be shown in the UI instead of 'name'
-        description: 'Person to greet'
+        description: 'client to deploy'
         # Default value if no value is explicitly provided
         default: 'surelogix'
         # Input has to be provided for the workflow to run
@@ -41,7 +41,7 @@ jobs:
     steps:
     # Runs a single command using the runners shell
     - name: run the script
-      run: deploy.sh ${{ inputs.name }}
+      run: bash deploy.sh ${{ inputs.name }}
   
   # movestuff:
   #   # The type of runner that the job will run on
