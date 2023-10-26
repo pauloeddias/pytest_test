@@ -39,16 +39,31 @@ jobs:
     - name: Send greeting
       run: echo "Hello ${{ inputs.name }} ${{inputs.choice}}!}}"
 
-  # whereamI:
-  #   # The type of runner that the job will run on
-  #   runs-on: ubuntu-latest
+  whereamI:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
     
-  #   # Steps represent a sequence of tasks that will be executed as part of the job
-  #   steps:
-  #   # Runs a single command using the runners shell
-  #   - name: checkout repo
-  #     uses: actions/checkout@v2
-  #   - name: run the script
-  #     working-directory: ./lambda_functions/${{ inputs.name }}
-  #     run: ./deploy.sh ${{ inputs.name }}
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Runs a single command using the runners shell
+    - name: checkout repo
+      uses: actions/checkout@v2
+
+    - uses: aws-actions/setup-sam@v2
+        with:
+          use-installer: true
+
+    - uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+    - name: sam build
+      working-directory: ./lambda_functions/${{ inputs.name }}
+      run: sam build
+
+    - name: show dir
+      working-directory: ./lambda_functions/${{ inputs.name }}
+      run: ls
   
