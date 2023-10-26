@@ -209,8 +209,10 @@ def lambda_handler(event, context=None):
                 'tms': 'crown',
                 'sub_customer': doc_type.split('-')[-2],
             },
-            'model_info': model_info
+            'model_info': model_info,
+            'file_type':doc_type.split('-')[-3],
             }
+            
     except UnintendedFileException as e:
         return {
             "statusCode": 406,

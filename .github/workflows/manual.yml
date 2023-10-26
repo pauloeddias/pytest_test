@@ -71,9 +71,9 @@ jobs:
       working-directory: ./lambda_functions/${{ inputs.name }}
       run: sam build
 
-    - name: show dir
-      working-directory: ./lambda_functions/${{ inputs.name }}/.aws-sam
-      run: ls
+    # - name: show dir
+    #   working-directory: ./lambda_functions/${{ inputs.name }}/.aws-sam
+    #   run: ls
 
     - name: create app dir
       working-directory: ./lambda_functions/${{ inputs.name }}/.aws-sam/build
@@ -87,9 +87,9 @@ jobs:
       working-directory: ./lambda_functions/${{ inputs.name }}/.aws-sam/build
       run: mv app ${{ inputs.name }}
 
-    - name: show dir
-      working-directory: ./lambda_functions/${{ inputs.name }}/.aws-sam/build/${{ inputs.name }}
-      run: ls
+    - name: sam deploy
+      working-directory: ./lambda_functions/${{ inputs.name }}
+      run: sam deploy ${{input.choice}}
 
     
   
