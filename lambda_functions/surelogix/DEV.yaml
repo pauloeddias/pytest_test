@@ -10,7 +10,7 @@ Parameters:
       Default: DEV
 
   Version:
-    Type: Number
+    Type: String
 
 Metadata:
   AWS::ServerlessRepo::Application:
