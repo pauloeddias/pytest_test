@@ -9,19 +9,19 @@ Parameters:
         - PROD
       Default: DEV
 
-  Version:
-    Type: String
+  # Version:
+  #   Type: String
 
-Metadata:
-  AWS::ServerlessRepo::Application:
-    SemanticVersion: ${Version}
+# Metadata:
+#   AWS::ServerlessRepo::Application:
+#     SemanticVersion: ${Version}
 Resources:
-  surelogixDEV:
+  surelogix:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: .
       Description: ''
-      AutoPublishAlias: live
+      # AutoPublishAlias: live
       MemorySize: 1048
       Timeout: 900
       Handler: app.surelogix_function_temp.lambda_handler
@@ -39,7 +39,7 @@ Resources:
           AZURE_KEY: !Sub '{{resolve:secretsmanager:DML_env_variables:SecretString:AZURE_KEY}}'
           OPENAI_API_KEY: !Sub '{{resolve:secretsmanager:DML_env_variables:SecretString:OPENAI_API_KEY}}'
           ENVIRONMENT: !Sub 'DEV'
-      Role: arn:aws:iam::061008833801:role/dml-main-prod
+      Role:  !Sub '{{resolve:secretsmanager:DML_env_variables:SecretString:IAM_ROLE}}'
       Layers:
         - >-
           arn:aws:lambda:us-east-1:061008833801:layer:PortXDependencies_Python_Layer:4
@@ -48,5 +48,5 @@ Resources:
       SnapStart:
         ApplyOn: None
       PackageType: Zip
-      FunctionName: !Sub 'SamTest13_DEV_surelogix'
-      VersionDescription: DEV deploy
+      FunctionName: 'SamTest13_surelogix'
+      # VersionDescription: DEV deploy
