@@ -9,8 +9,8 @@ Parameters:
         - PROD
       Default: DEV
 
-    Version:
-      Type: Number
+  Version:
+    Type: Number
 
 Metadata:
   AWS::ServerlessRepo::Application:
