@@ -78,9 +78,9 @@ jobs:
       working-directory: ./lambda_functions/${{ inputs.name }}/.aws-sam/build/${{ inputs.name }}${{ inputs.choice }}
       run: ls app
     
-    # - name: sam deploy
-    #   working-directory: ./lambda_functions/${{ inputs.name }}
-    #   run: mytime=`date +%s`; sam deploy --config-file ${{ inputs.choice }}.toml --template-file ${{ inputs.choice }}.yaml --parameter-overrides Environment=${{ inputs.choice }} Version=$mytime
+    - name: sam deploy
+      working-directory: ./lambda_functions/${{ inputs.name }}
+      run: mytime=`date +%s`; sam deploy --config-file ${{ inputs.choice }}.toml --template-file ${{ inputs.choice }}.yaml --parameter-overrides Environment=${{ inputs.choice }} Version=$mytime
 
 
     
