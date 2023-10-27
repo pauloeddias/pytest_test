@@ -54,18 +54,6 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1
 
-    # - name: replace env name in config
-    #   working-directory: ./lambda_functions/${{ inputs.name }}
-    #   run: sed -i 's/{{MYENV}}/${{ inputs.choice }}/g' samconfig.toml
-
-    # - name: replace env name in template
-    #   working-directory: ./lambda_functions/${{ inputs.name }}
-    #   run: sed -i 's/{{MYENV}}/${{ inputs.choice }}/g' template.yaml
-
-    # - name: sam build 
-    #   working-directory: ./lambda_functions/${{ inputs.name }}
-    #   run: sam build --template-file ${{ inputs.choice }}.yaml
-
     - name: sam build 
       working-directory: ./lambda_functions/${{ inputs.name }}
       run: sam build --config-file ${{ inputs.choice }}.toml --template-file ${{ inputs.choice }}.yaml
@@ -82,22 +70,14 @@ jobs:
       working-directory: ./lambda_functions/${{ inputs.name }}/.aws-sam/build
       run: mv app ${{ inputs.name }}${{ inputs.choice }}
 
-    # - name: sam deploy
-    #   working-directory: ./lambda_functions/${{ inputs.name }}
-    #   run: sam deploy --template-file ${{ inputs.choice }}.yaml
-
+    - name: list files
+      working-directory: ./lambda_functions/${{ inputs.name }}/.aws-sam/build/${{ inputs.name }}${{ inputs.choice }}
+      run: ls
     
-    - name: sam deploy
-      working-directory: ./lambda_functions/${{ inputs.name }}
-      run: mytime=`date +%s`; sam deploy --config-file ${{ inputs.choice }}.toml --template-file ${{ inputs.choice }}.yaml --parameter-overrides Environment=${{ inputs.choice }} Version=$mytime
-
-    # - name: sam build 
-    #   working-directory: ./lambda_functions/${{ inputs.name }}
-    #   run: sam build --config-file ${{ inputs.choice }}.toml --template-file ${{ inputs.choice }}.yaml
-
     # - name: sam deploy
     #   working-directory: ./lambda_functions/${{ inputs.name }}
-    #   run: sam deploy --config-file ${{ inputs.choice }}.toml --template-file ${{ inputs.choice }}.yaml
+    #   run: mytime=`date +%s`; sam deploy --config-file ${{ inputs.choice }}.toml --template-file ${{ inputs.choice }}.yaml --parameter-overrides Environment=${{ inputs.choice }} Version=$mytime
+
 
     
   
