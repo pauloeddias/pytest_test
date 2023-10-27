@@ -80,7 +80,7 @@ jobs:
     
     - name: sam deploy
       working-directory: ./lambda_functions/${{ inputs.name }}
-      run: mytime=`date +%s`; sam deploy --config-file ${{ inputs.choice }}.toml --template-file ${{ inputs.choice }}.yaml --parameter-overrides Environment=${{ inputs.choice }} Version=$mytime
+      run: sam deploy --config-file ${{ inputs.choice }}.toml --template-file ${{ inputs.choice }}.yaml --parameter-overrides Environment=${{ inputs.choice }} Version=2
 
 
     
