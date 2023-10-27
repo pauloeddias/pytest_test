@@ -62,9 +62,13 @@ jobs:
     #   working-directory: ./lambda_functions/${{ inputs.name }}
     #   run: sed -i 's/{{MYENV}}/${{ inputs.choice }}/g' template.yaml
 
+    # - name: sam build 
+    #   working-directory: ./lambda_functions/${{ inputs.name }}
+    #   run: sam build --template-file ${{ inputs.choice }}.yaml
+
     - name: sam build 
       working-directory: ./lambda_functions/${{ inputs.name }}
-      run: sam build --template-file ${{ inputs.choice }}.yaml
+      run: sam build --config-file ${{ inputs.choice }}.toml --template-file ${{ inputs.choice }}.yaml
 
     - name: create app dir
       working-directory: ./lambda_functions/${{ inputs.name }}/.aws-sam/build
@@ -78,9 +82,14 @@ jobs:
       working-directory: ./lambda_functions/${{ inputs.name }}/.aws-sam/build
       run: mv app ${{ inputs.name }}${{ inputs.choice }}
 
+    # - name: sam deploy
+    #   working-directory: ./lambda_functions/${{ inputs.name }}
+    #   run: sam deploy --template-file ${{ inputs.choice }}.yaml
+
+    
     - name: sam deploy
       working-directory: ./lambda_functions/${{ inputs.name }}
-      run: sam deploy --template-file ${{ inputs.choice }}.yaml
+      run: mytime=`date +%s`; sam deploy --config-file ${{ inputs.choice }}.toml --template-file ${{ inputs.choice }}.yaml --parameter-overrides Environment=${{ inputs.choice }} Version=$mytime
 
     # - name: sam build 
     #   working-directory: ./lambda_functions/${{ inputs.name }}

@@ -8,10 +8,19 @@ Parameters:
         - DEV
         - PROD
       Default: DEV
+  
+  Version:
+      Type: Number
+
+Metadata:
+  AWS::ServerlessRepo::Application:
+    SemanticVersion: ${Version}
+
 Resources:
   surelogixPROD:
     Type: AWS::Serverless::Function
     Properties:
+      AutoPublishAlias: live
       CodeUri: .
       Description: ''
       MemorySize: 1048
@@ -39,5 +48,5 @@ Resources:
       SnapStart:
         ApplyOn: None
       PackageType: Zip
-      FunctionName: !Sub 'SamTest9_PROD_surelogix'
+      FunctionName: !Sub 'SamTest11_PROD_surelogix'
       VersionDescription: PROD deploy

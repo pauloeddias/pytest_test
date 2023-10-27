@@ -8,12 +8,20 @@ Parameters:
         - DEV
         - PROD
       Default: DEV
+
+    Version:
+      Type: Number
+
+Metadata:
+  AWS::ServerlessRepo::Application:
+    SemanticVersion: ${Version}
 Resources:
   surelogixDEV:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: .
       Description: ''
+      AutoPublishAlias: live
       MemorySize: 1048
       Timeout: 900
       Handler: app.surelogix_function_temp.lambda_handler
@@ -39,5 +47,5 @@ Resources:
       SnapStart:
         ApplyOn: None
       PackageType: Zip
-      FunctionName: !Sub 'SamTest9_DEV_surelogix'
+      FunctionName: !Sub 'SamTest11_DEV_surelogix'
       VersionDescription: DEV deploy
