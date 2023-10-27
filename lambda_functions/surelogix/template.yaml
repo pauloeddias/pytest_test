@@ -21,7 +21,7 @@ Resources:
     Properties:
       CodeUri: .
       Description: ''
-      # AutoPublishAlias: live
+      AutoPublishAlias: live
       MemorySize: 1048
       Timeout: 900
       Handler: app.surelogix_function_temp.lambda_handler
@@ -49,4 +49,4 @@ Resources:
         ApplyOn: None
       PackageType: Zip
       FunctionName: 'SamTest13_surelogix'
-      # VersionDescription: DEV deploy
+      VersionDescription: DEV deploy
