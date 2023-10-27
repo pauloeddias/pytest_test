@@ -186,6 +186,7 @@ def get_executor_chain_type(preprocessor, multi):
         return loop_executor_chain
     else:
         return general_executor_chain
+    
 
 
 def lambda_handler(event, context=None):
@@ -196,6 +197,7 @@ def lambda_handler(event, context=None):
         executor_chain = get_executor_chain_type(preprocessor, multi)
         order_list, doc_type = executor_chain(preprocessor, event, context, model_name)
 
+    
         return {
             "statusCode": 200,
             "headers": {
@@ -210,7 +212,7 @@ def lambda_handler(event, context=None):
                 'sub_customer': doc_type.split('-')[-2],
             },
             'model_info': model_info,
-            'file_type':"blfp",
+            'file_type':"blfasdfp",
             }
             
     except UnintendedFileException as e:
