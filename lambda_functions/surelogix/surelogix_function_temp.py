@@ -210,7 +210,7 @@ def lambda_handler(event, context=None):
                 'sub_customer': doc_type.split('-')[-2],
             },
             'model_info': model_info,
-            'file_type':doc_type.split('-')[-3],
+            'file_type':"bla",
             }
             
     except UnintendedFileException as e:
