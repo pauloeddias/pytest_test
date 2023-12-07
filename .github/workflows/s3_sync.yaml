@@ -23,12 +23,5 @@ jobs:
 
     - name: Sync with S3 bucket
       run: |
-        aws s3 sync . s3://dml-data-prod/airflow_code --follow-symlinks --delete '.git/mytest/*'
+        aws s3 sync mytest/ s3://dml-data-prod/airflow_code --follow-symlinks --delete
 
-    # - name: Sync directory to S3
-    #   uses: aws-actions/amazon-s3-sync-action@v0
-    #   with:
-    #     source_dir: mytest
-    #     bucket: dml-data-prod
-    #     bucket_path: airflow_code
-    #     delete: true
