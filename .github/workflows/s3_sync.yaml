@@ -22,7 +22,7 @@ jobs:
         aws-region: us-east-1  # replace with your AWS region
 
     - name: Sync directory to S3
-      uses: aws-actions/s3-sync@v0
+      uses: aws-actions/amazon-s3-sync-action@v0
       with:
         source_dir: mytest
         bucket: dml-data-prod
