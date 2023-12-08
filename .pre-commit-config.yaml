@@ -1,0 +1,98 @@
+repos:
+    # `pre-commit-hooks` is the MAIN repo and tooling for this YAML file
+    # `trailing-whitespace` identifies and removes any trailing whitespace at the end of lines in a Python file
+    # `check-yaml` inspects YAML files in the repository and report any problems with the YAML syntax or formatting
+    -   repo: https://github.com/pre-commit/pre-commit-hooks
+        rev: v4.5.0
+        hooks:
+            -   id: trailing-whitespace
+            -   id: check-yaml
+    # `isort` auto-formats the import statements
+    -   repo: https://github.com/pycqa/isort
+        rev: 5.12.0
+        hooks:
+            -   id: isort
+                args: [ "--line-length", "90", "--profile", "black" ]
+    # `black` auto-formats Python code
+    -   repo: https://github.com/ambv/black
+        rev: 23.11.0
+        hooks:
+            -   id: black
+                args: [ "--line-length", "120" ]
+    # `pylint` is a comprehensive PEP8 code checker
+    # using `--disable=all` because there are TOO MANY checks via pylint
+    -   repo: https://github.com/pre-commit/mirrors-pylint
+        rev: v3.0.0a5
+        hooks:
+            -   id: pylint
+                args: [
+                    '--max-line-length=120',
+                    '--disable=all',
+                    '--enable=unused-import,wildcard-import,relative-beyond-top-level,unannotated-annotations,invalid-name,unused-argument',
+                ]
+    # `mypy` is an optional static type checker that can catch many programming errors.
+    # `--install-types` instructs MyPy to automatically install type stubs for third-party packages if they are not already present.
+    # `--non-interactive` runs MyPy in non-interactive mode, which means it won't prompt for user input. Useful for CI / CD.
+    # `--explicit-package-bases` requires explicit specification of package bases in import statements. Helps improve the accuracy of type checking.
+    # `--check-untyped-defs` checks for the presence of type annotations on functions or methods, but it does not enforce them.
+    # `--disallow-untyped-defs` prevents the use of functions or methods without type annotations.
+    # `--disallow-untyped-calls` prevents calling functions or methods that do not have type annotations.
+    # `--disallow-incomplete-defs` prevents incomplete type annotations (e.g., missing return types or parameter types).
+    # `--ignore-missing-imports` skips the type checking of import statements for modules that are not found. NEED THIS BECAUSE TOO MANY PROBLEMS USING IT.
+    # `--strict-equality` enforces strict equality checks, where only values of the exact same type are considered equal.
+    # `--disallow-any-generics` disallows usage of generic types that do not specify explicit type parameters.
+    # `--disallow-any-explicit` prevents using `Any` in type positions such as type annotations and generic type parameters.
+    # `--disallow-untyped-decorators` disallows the use of decorators without explicit type annotations.
+    # `--disallow-subclassing-any` disallows subclassing from `Any`.
+    # `--disallow-redefinition` disallows variable redefinitions, which helps prevent shadowing of variables in the outer scope.
+    # `--disable-error-code` turns off certain checks.
+    -   repo: https://github.com/pre-commit/mirrors-mypy
+        rev: v1.7.1
+        hooks:
+            -   id: mypy
+                args: [
+                    "--install-types",
+                    "--non-interactive",
+                    "--explicit-package-bases",
+                    "--check-untyped-defs",
+                    "--disallow-untyped-defs",
+                    "--disallow-untyped-calls",
+                    "--disallow-incomplete-defs",
+                    "--ignore-missing-imports",
+                    "--strict-equality",
+                    "--disallow-any-generics",
+                    "--disallow-any-explicit",
+                    "--disallow-untyped-decorators",
+                    "--disallow-subclassing-any",
+                    "--disallow-redefinition",
+                    "--disable-error-code", "no-redef",
+                    "--disable-error-code", "operator",
+                    "--disable-error-code", "misc",
+                    "--disable-error-code", "arg-type",
+                    "--disable-error-code", "union-attr",
+                    "--disable-error-code", "call-overload",
+                    "--disable-error-code", "index",
+                    "--disable-error-code", "has-type",
+                    "--disable-error-code", "assignment",
+                    "--disable-error-code", "dict-item",
+                ]
+    # `pydocstringformatter` checks Python docstrings for compliance with PEP 257 conventions.
+    -   repo: https://github.com/DanielNoord/pydocstringformatter
+        rev: v0.7.3
+        hooks:
+            -   id: pydocstringformatter
+    # `interrogate` is a more advanced docstring coverage checker
+    # `-vv`: Sets the verbosity level to "very verbose," providing detailed information during the interrogation process.
+    # `--fail-under=100`: Specifies that the interrogation should fail if the coverage is below 100%. This means at least 100% of the code should be covered by docstrings.
+    # `--ignore-init-module`: Ignores the __init__.py module.
+    # `--omit-covered-files`: Excludes files from consideration if they are already fully covered by docstrings.
+    -   repo: https://github.com/econchick/interrogate
+        rev: 1.5.0
+        hooks:
+            -   id: interrogate
+                args: [
+                    "-vv",
+                    "--fail-under=100",
+                    "--ignore-init-module",
+                    "--omit-covered-files",
+                ]
