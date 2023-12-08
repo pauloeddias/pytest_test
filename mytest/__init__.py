@@ -1,1 +1,1 @@
-"""This is the init file"""
+"""This is the init file."""

@@ -1,1 +1,1 @@
-"""This is just some other file"""
+"""This is just some other file."""
